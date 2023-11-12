@@ -25,6 +25,8 @@ public class CustomSecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests()
 		.requestMatchers("/students/new").hasRole("ADMIN")
+		.requestMatchers("/students/edit/{id}").hasRole("ADMIN")
+		.requestMatchers("/students/delete/{id}").hasRole("ADMIN")
 		.requestMatchers("/").authenticated()
 		.requestMatchers("/**").authenticated().and().formLogin().defaultSuccessUrl("/liststudents").and().logout().logoutUrl("/logout");
 		//.deleteCookies("JSESSIONID").invalidateHttpSession(true) ;
